@@ -1,4 +1,4 @@
-INTER_MANET_NS3_BFR
-===================
+INTER_MANET_NS3
+===============
 
-Bloom Filter Routing version
+Inter-MANET Routing code NS-3.15 version
