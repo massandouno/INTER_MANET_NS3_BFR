@@ -203,6 +203,7 @@ RoutingProtocol::RoutingProtocol ()
     m_periodicUpdateTimer (Timer::CANCEL_ON_DESTROY)
 {
   m_uniformRandomVariable = CreateObject<UniformRandomVariable> ();
+  bf = new unsigned char[100];
 }
 
 RoutingProtocol::~RoutingProtocol ()
@@ -236,13 +237,18 @@ RoutingProtocol::Start ()
   m_queue.SetMaxQueueLen (m_maxQueueLen);
   m_queue.SetQueueTimeout (m_maxQueueTime);
   m_nb.ScheduleTimer();
+  //m_bfTrigger.Schedule(Seconds(30));
   m_routingTable.Setholddowntime (Time (Holdtimes * m_periodicUpdateInterval));
   m_advRoutingTable.Setholddowntime (Time (Holdtimes * m_periodicUpdateInterval));
   m_scb = MakeCallback (&RoutingProtocol::Send,this);
   m_ecb = MakeCallback (&RoutingProtocol::Drop,this);
   m_periodicUpdateTimer.SetFunction (&RoutingProtocol::SendPeriodicUpdate,this);
   m_periodicUpdateTimer.Schedule (MicroSeconds (m_uniformRandomVariable->GetInteger (0,1000)));
+  //m_bfTrigger.SetFunction(&RoutingProtocol::setBloomFilter,this);
+  //m_bfTrigger.SetDelay(Seconds(31));
+  //m_bfTrigger.Schedule();
   pnd = m_ipv4->GetObject<Node>();
+  //std::cout<<m_ipv4->GetAddress(1,0).GetLocal()<<"\n";
 }
 
 Ptr<Ipv4Route>
@@ -283,7 +289,7 @@ RoutingProtocol::RouteOutput (Ptr<Packet> p,
     {
       Simulator::Schedule (MicroSeconds (m_uniformRandomVariable->GetInteger (0,1000)),&RoutingProtocol::SendTriggeredUpdate,this);
     }
-  if (m_routingTable.LookupRoute (dst,rt))
+  if (m_routingTable.LookupRouteByBF (dst,rt))
     {
       if (EnableBuffering)
         {
@@ -459,7 +465,7 @@ RoutingProtocol::RouteInput (Ptr<const Packet> p,
       return true;
     }
   RoutingTableEntry toDst;
-  if (m_routingTable.LookupRoute (dst,toDst))
+  if (m_routingTable.LookupRouteByBF (dst,toDst))
     {
       RoutingTableEntry ne;
       if (m_routingTable.LookupRoute (toDst.GetNextHop (),ne))
@@ -602,7 +608,7 @@ RoutingProtocol::RecvIdrm (Ptr<Socket> socket)
                 sender, /*lifetime=*/
                 Simulator::Now (), /*settlingTime*/
                 m_settlingTime, /*entries changed*/
-                true);
+                true,bf);
               newEntry.SetFlag (VALID);
               m_routingTable.AddRoute (newEntry);
               NS_LOG_DEBUG ("New Route added to both tables");
@@ -768,14 +774,19 @@ RoutingProtocol::RecvIdrm (Ptr<Socket> socket)
             }
         }
     }
+    /*
   for(;packetSize > 0; packetSize = packetSize -12)
   {
   	IdrmHeader nbHeader;
 	packet->RemoveHeader(nbHeader);
+	//m_nc[nbHeader.GetDst()] = nbHeader.GetDstSeqno();
 	m_nc[nbHeader.GetDst()] = nbHeader.GetDstSeqno();
   }
+  
+  	
   //std::cout<< "test2" <<endl;
   //std::cout << "Neighbor Count for " << pnd  <<" with type of " << pnd->GetNType()<<endl;
+  
   pnd->couldBeGateway = true;
   for(std::map<Ipv4Address, int>::const_iterator i = m_nc.begin (); i != m_nc.end (); ++i)
   	{
@@ -785,6 +796,7 @@ RoutingProtocol::RecvIdrm (Ptr<Socket> socket)
   	 	pnd->couldBeGateway = false;
   	 	}
   	}
+  	*/
   //std::cout<< "test3 could be gw?: " << pnd->couldBeGateway <<endl;
   std::map<Ipv4Address, RoutingTableEntry> allRoutes;
   m_advRoutingTable.GetListOfAllRoutes (allRoutes);
@@ -813,6 +825,7 @@ RoutingProtocol::SendTriggeredUpdate ()
       Ptr<Socket> socket = j->first;
       Ipv4InterfaceAddress iface = j->second;
       Ptr<Packet> packet = Create<Packet> ();
+      /*
 	  for(std::map<Ipv4Address, int>::const_iterator i = m_nc.begin (); i != m_nc.end (); ++i)
 	  {
 	  	idrmHeader.SetDst(i->first);
@@ -820,6 +833,7 @@ RoutingProtocol::SendTriggeredUpdate ()
 		idrmHeader.SetHopCount(0);
 		packet->AddHeader(idrmHeader);
 	  }
+	  */
       for (std::map<Ipv4Address, RoutingTableEntry>::const_iterator i = allRoutes.begin (); i != allRoutes.end (); ++i)
         {
           NS_LOG_LOGIC ("Destination: " << i->second.GetDestination ()
@@ -833,6 +847,7 @@ RoutingProtocol::SendTriggeredUpdate ()
               idrmHeader.SetHopCount (i->second.GetHop () + 1);
               temp.SetFlag (VALID);
               temp.SetEntriesChanged (false);
+              idrmHeader.SetBF(bf);
               m_advRoutingTable.DeleteIpv4Event (temp.GetDestination ());
               if (!(temp.GetSeqNo () % 2))
                 {
@@ -858,6 +873,7 @@ RoutingProtocol::SendTriggeredUpdate ()
           idrmHeader.SetDst (m_ipv4->GetAddress (1, 0).GetLocal ());
           idrmHeader.SetDstSeqno (temp2.GetSeqNo ());
           idrmHeader.SetHopCount (temp2.GetHop () + 1);
+          idrmHeader.SetBF(bf);
           NS_LOG_DEBUG ("Adding my update as well to the packet");
           packet->AddHeader (idrmHeader);
 		  //routeCount++;
@@ -905,6 +921,7 @@ RoutingProtocol::SendPeriodicUpdate ()
       Ptr<Packet> packet = Create<Packet> ();
       IdrmHeader idrmHeader;
 	  int routeCount = 0;
+	  /*
 	  for(std::map<Ipv4Address, int>::const_iterator i = m_nc.begin (); i != m_nc.end (); ++i)
 	  {
 	  	idrmHeader.SetDst(i->first);
@@ -912,6 +929,7 @@ RoutingProtocol::SendPeriodicUpdate ()
 		idrmHeader.SetHopCount(0);
 		packet->AddHeader(idrmHeader);
 	  }
+	  */
       for (std::map<Ipv4Address, RoutingTableEntry>::const_iterator i = allRoutes.begin (); i != allRoutes.end (); ++i)
         {
           if (i->second.GetHop () == 0)
@@ -920,6 +938,7 @@ RoutingProtocol::SendPeriodicUpdate ()
               idrmHeader.SetDst (m_ipv4->GetAddress (1,0).GetLocal ());
               idrmHeader.SetDstSeqno (i->second.GetSeqNo () + 2);
               idrmHeader.SetHopCount (i->second.GetHop () + 1);
+              idrmHeader.SetBF(bf);
               m_routingTable.LookupRoute (m_ipv4->GetAddress (1,0).GetBroadcast (),ownEntry);
               ownEntry.SetSeqNo (idrmHeader.GetDstSeqno ());
               m_routingTable.Update (ownEntry);
@@ -931,6 +950,7 @@ RoutingProtocol::SendPeriodicUpdate ()
               idrmHeader.SetDst (i->second.GetDestination ());
               idrmHeader.SetDstSeqno ((i->second.GetSeqNo ()));
               idrmHeader.SetHopCount (i->second.GetHop () + 1);
+              idrmHeader.SetBF(bf);
               packet->AddHeader (idrmHeader);
 			  routeCount++;
             }
@@ -990,7 +1010,7 @@ RoutingProtocol::SetIpv4 (Ptr<Ipv4> ipv4)
     /*iface=*/ Ipv4InterfaceAddress (Ipv4Address::GetLoopback (),Ipv4Mask ("255.0.0.0")),
     /*hops=*/ 0,  /*next hop=*/
     Ipv4Address::GetLoopback (),
-    /*lifetime=*/ Simulator::GetMaximumSimulationTime ());
+    /*lifetime=*/ Simulator::GetMaximumSimulationTime (),Simulator::Now (),false,bf);
   rt.SetFlag (INVALID);
   rt.SetEntriesChanged (false);
   m_routingTable.AddRoute (rt);
@@ -1020,7 +1040,7 @@ RoutingProtocol::NotifyInterfaceUp (uint32_t i)
   // Add local broadcast record to the routing table
   Ptr<NetDevice> dev = m_ipv4->GetNetDevice (m_ipv4->GetInterfaceForAddress (iface.GetLocal ()));
   RoutingTableEntry rt (/*device=*/ dev, /*dst=*/ iface.GetBroadcast (), /*seqno=*/ 0,/*iface=*/ iface,/*hops=*/ 0,
-                                    /*next hop=*/ iface.GetBroadcast (), /*lifetime=*/ Simulator::GetMaximumSimulationTime ());
+                                    /*next hop=*/ iface.GetBroadcast (), /*lifetime=*/ Simulator::GetMaximumSimulationTime (),Simulator::Now (),false,bf);
   m_routingTable.AddRoute (rt);
   if (m_mainAddress == Ipv4Address ())
     {
@@ -1076,7 +1096,7 @@ RoutingProtocol::NotifyAddAddress (uint32_t i,
       m_socketAddresses.insert (std::make_pair (socket,iface));
       Ptr<NetDevice> dev = m_ipv4->GetNetDevice (m_ipv4->GetInterfaceForAddress (iface.GetLocal ()));
       RoutingTableEntry rt (/*device=*/ dev, /*dst=*/ iface.GetBroadcast (),/*seqno=*/ 0, /*iface=*/ iface,/*hops=*/ 0,
-                                        /*next hop=*/ iface.GetBroadcast (), /*lifetime=*/ Simulator::GetMaximumSimulationTime ());
+                                        /*next hop=*/ iface.GetBroadcast (), /*lifetime=*/ Simulator::GetMaximumSimulationTime (),Simulator::Now (),false,bf);
       m_routingTable.AddRoute (rt);
     }
 }
@@ -1327,6 +1347,12 @@ void
       }
     }  
 }
-
+/*
+void
+	RoutingProtocol::setBloomFilter()
+	{
+	    cout<<"test bf timer\n";
+	}
+	*/
 }
 }

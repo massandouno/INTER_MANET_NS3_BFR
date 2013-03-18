@@ -185,8 +185,6 @@ public:
   virtual iMRoutingTable GetRoutingTable() = 0;
 
   virtual void SetRoutingTable(iMRoutingTable iMtable) = 0;
-  
-  unsigned char* bf;
 };
 
 } // namespace ns3

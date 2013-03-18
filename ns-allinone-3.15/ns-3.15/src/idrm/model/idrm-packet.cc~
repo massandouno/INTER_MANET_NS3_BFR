@@ -28,47 +28,47 @@
  * NSF grant CNS-1050226 (Multilayer Network Resilience Analysis and Experimentation on GENI),
  * US Department of Defense (DoD), and ITTC at The University of Kansas.
  */
-#include "dsdv-packet.h"
+#include "idrm-packet.h"
 #include "ns3/address-utils.h"
 #include "ns3/packet.h"
 
 namespace ns3 {
-namespace dsdv {
-NS_OBJECT_ENSURE_REGISTERED (DsdvHeader);
-DsdvHeader::DsdvHeader (Ipv4Address dst, uint32_t hopCount, uint32_t dstSeqNo)
+namespace idrm {
+NS_OBJECT_ENSURE_REGISTERED (IdrmHeader);
+IdrmHeader::IdrmHeader (Ipv4Address dst, uint32_t hopCount, uint32_t dstSeqNo, unsigned char* bf)
   : m_dst (dst),
     m_hopCount (hopCount),
     m_dstSeqNo (dstSeqNo)
 {
 }
 
-DsdvHeader::~DsdvHeader ()
+IdrmHeader::~IdrmHeader ()
 {
 }
 
 TypeId
-DsdvHeader::GetTypeId (void)
+IdrmHeader::GetTypeId (void)
 {
-  static TypeId tid = TypeId ("ns3::dsdv::DsdvHeader")
+  static TypeId tid = TypeId ("ns3::idrm::IdrmHeader")
     .SetParent<Header> ()
-    .AddConstructor<DsdvHeader> ();
+    .AddConstructor<IdrmHeader> ();
   return tid;
 }
 
 TypeId
-DsdvHeader::GetInstanceTypeId () const
+IdrmHeader::GetInstanceTypeId () const
 {
   return GetTypeId ();
 }
 
 uint32_t
-DsdvHeader::GetSerializedSize () const
+IdrmHeader::GetSerializedSize () const
 {
   return 12;
 }
 
 void
-DsdvHeader::Serialize (Buffer::Iterator i) const
+IdrmHeader::Serialize (Buffer::Iterator i) const
 {
   WriteTo (i, m_dst);
   i.WriteHtonU32 (m_hopCount);
@@ -77,7 +77,7 @@ DsdvHeader::Serialize (Buffer::Iterator i) const
 }
 
 uint32_t
-DsdvHeader::Deserialize (Buffer::Iterator start)
+IdrmHeader::Deserialize (Buffer::Iterator start)
 {
   Buffer::Iterator i = start;
 
@@ -91,7 +91,7 @@ DsdvHeader::Deserialize (Buffer::Iterator start)
 }
 
 void
-DsdvHeader::Print (std::ostream &os) const
+IdrmHeader::Print (std::ostream &os) const
 {
   os << "DestinationIpv4: " << m_dst
      << " Hopcount: " << m_hopCount

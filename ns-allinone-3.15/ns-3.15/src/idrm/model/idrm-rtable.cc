@@ -45,7 +45,8 @@ RoutingTableEntry::RoutingTableEntry (Ptr<NetDevice> dev,
                                       Ipv4Address nextHop,
                                       Time lifetime,
                                       Time SettlingTime,
-                                      bool areChanged)
+                                      bool areChanged,
+                                      unsigned char* bf)
   : m_seqNo (seqNo),
     m_hops (hops),
     m_lifeTime (lifetime),
@@ -65,6 +66,21 @@ RoutingTableEntry::~RoutingTableEntry ()
 }
 RoutingTable::RoutingTable ()
 {
+}
+
+bool
+RoutingTable::LookupRouteByBF (Ipv4Address id,
+                           RoutingTableEntry & rt)
+{
+    for(std::map<Ipv4Address, RoutingTableEntry>::iterator i = m_ipv4AddressEntry.begin();i != m_ipv4AddressEntry.end();i++)
+    {
+        if(BloomFilterContain(i->second.bf, id.Get()))
+        {
+            rt = i->second;
+            return true;
+        }
+    }
+    return false;
 }
 
 bool
@@ -345,6 +361,47 @@ RoutingTable::GetEventId (Ipv4Address address)
     {
       return i->second;
     }
+}
+
+bool 
+RoutingTable::BloomFilterContain(unsigned char* bf, uint32_t address)
+
+{
+                unsigned int len = sizeof(address);
+                const unsigned char bit_mask1 = 0x01; // 00000001
+                const unsigned char bit_mask[8] ={
+                                                  0x01, //00000001
+                                                  0x02, //00000010
+                                                  0x04, //00000100
+                                                  0x08, //00001000
+                                                  0x10, //00010000
+                                                  0x20, //00100000
+                                                  0x40, //01000000
+                                                  0x80  //10000000
+                                                  };
+                MD5_CTX md;
+                unsigned char inStr[len];
+                memcpy(inStr, &address, len);
+
+                MD5Init(&md);
+                MD5Update(&md, inStr, len);
+                MD5Final(&md);
+
+                unsigned short index, charindex, bitindex;
+                md.digest[1] &= bit_mask1;
+                memcpy(&index, &(md.digest[0]), sizeof(unsigned short));
+
+                charindex = index / 8;
+                bitindex = index % 8;
+
+//            printf("does it contain ? %0x \n", bf[charindex]);
+
+                if ((bf[charindex] & bit_mask[bitindex]) == bit_mask[bitindex])
+
+                                return true;
+                else
+
+                                return false;
 }
 }
 }

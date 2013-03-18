@@ -95,6 +95,10 @@ Ipv4ListRouting::DoStart (void)
       protocol->Start ();
     }
   Ipv4RoutingProtocol::DoStart ();
+  SetBloomFilter();
+  m_bfTrigger.SetFunction(&Ipv4ListRouting::SetBloomFilter,this);
+  m_bfTrigger.SetDelay(Seconds(31));
+  m_bfTrigger.Schedule();
 }
 
 
@@ -415,10 +419,10 @@ bool Ipv4ListRouting::CheckIsolation()
 void 
 Ipv4ListRouting::Refresh_iMTable()
 {
-    iMMergeRoutingTable();
-	iMSetRoutingTable();
+    //iMMergeRoutingTable();
+	//iMSetRoutingTable();
 	//CheckIsolation();
-	m_refresh_imTable.Schedule (Seconds (0.01));
+	//m_refresh_imTable.Schedule (Seconds (0.01));
 }
 
 void 
@@ -447,6 +451,105 @@ int
 Ipv4ListRouting::Count_Neighbour()
 {
 	return m_table.size();
+}
+
+void 
+Ipv4ListRouting::ConstructBloomFilter(uint32_t address, unsigned char* bf)
+
+{               
+			    unsigned int len = sizeof(address);
+                //cout<<"len of address"<<len<<"\n";
+                const unsigned char bit_mask1 = 0x01; // 000000001
+                const unsigned char bit_mask[8] ={
+                                                  0x01, //00000001
+                                                  0x02, //00000010
+                                                  0x04, //00000100
+                                                  0x08, //00001000
+                                                  0x10, //00010000
+                                                  0x20, //00100000
+                                                  0x40, //01000000
+                                                  0x80  //10000000
+                                                  };
+                
+
+                                MD5_CTX md;
+                                unsigned char inStr[len];
+
+                                memcpy(inStr, &address, len);
+                                //cout<<"instr is"<<inStr<<"\n";
+
+                                MD5Init(&md);
+                                MD5Update(&md, inStr, len);
+                                MD5Final(&md);
+                                //MD5Print(&md);
+
+                                unsigned short index, charindex, bitindex;
+
+                                md.digest[1] &= bit_mask1;
+                                memcpy(&index, &(md.digest[0]),sizeof(unsigned short));
+                                //cout<<"index"<<index<<"\n";
+                                charindex = index / 8;
+                                bitindex = index % 8;
+                                bf[charindex] |= bit_mask[bitindex];
+                                //printf("index = %0x \n", bf[charindex]);
+}
+
+bool 
+Ipv4ListRouting::BloomFilterContain(unsigned char* bf, uint32_t address)
+
+{
+                unsigned int len = sizeof(address);
+                const unsigned char bit_mask1 = 0x01; // 00000001
+                const unsigned char bit_mask[8] ={
+                                                  0x01, //00000001
+                                                  0x02, //00000010
+                                                  0x04, //00000100
+                                                  0x08, //00001000
+                                                  0x10, //00010000
+                                                  0x20, //00100000
+                                                  0x40, //01000000
+                                                  0x80  //10000000
+                                                  };
+                MD5_CTX md;
+                unsigned char inStr[len];
+                memcpy(inStr, &address, len);
+
+                MD5Init(&md);
+                MD5Update(&md, inStr, len);
+                MD5Final(&md);
+
+                unsigned short index, charindex, bitindex;
+                md.digest[1] &= bit_mask1;
+                memcpy(&index, &(md.digest[0]), sizeof(unsigned short));
+
+                charindex = index / 8;
+                bitindex = index % 8;
+
+//            printf("does it contain ? %0x \n", bf[charindex]);
+
+                if ((bf[charindex] & bit_mask[bitindex]) == bit_mask[bitindex])
+
+                                return true;
+                else
+
+                                return false;
+}
+
+void 
+Ipv4ListRouting::SetBloomFilter()
+{
+    Ptr<Node> pnd=m_ipv4->GetObject<Node>();
+    if(pnd->GetNType() == 2)
+    {
+        Ipv4RoutingProtocolList::const_iterator i = m_routingProtocols.begin ();
+        iMRoutingTable tempTable((*i).second->GetRoutingTable());
+        for(iMRoutingTable::const_iterator iter = tempTable.begin ();
+	  iter != tempTable.end (); iter++)
+	    {
+	        memset((*m_routingProtocols.end ()).second->bf,0,100);
+	        ConstructBloomFilter(iter->second.destAddr.Get(),(*m_routingProtocols.end ()).second->bf);
+	    }
+    }
 }
 
 } // namespace ns3

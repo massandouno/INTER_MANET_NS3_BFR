@@ -35,10 +35,11 @@
 namespace ns3 {
 namespace idrm {
 NS_OBJECT_ENSURE_REGISTERED (IdrmHeader);
-IdrmHeader::IdrmHeader (Ipv4Address dst, uint32_t hopCount, uint32_t dstSeqNo)
+IdrmHeader::IdrmHeader (Ipv4Address dst, uint32_t hopCount, uint32_t dstSeqNo, unsigned char* bf)
   : m_dst (dst),
     m_hopCount (hopCount),
-    m_dstSeqNo (dstSeqNo)
+    m_dstSeqNo (dstSeqNo),
+    bf(bf)
 {
 }
 

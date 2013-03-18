@@ -26,7 +26,6 @@
 #include "ns3/ipv4.h"
 #include "ns3/random-variable-stream.h"
 #include "ns3/timer.h"
-#include "ns3/md5.h"
 
 #include <vector>
 #include <map>

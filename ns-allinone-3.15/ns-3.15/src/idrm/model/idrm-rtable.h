@@ -40,6 +40,7 @@
 #include "ns3/timer.h"
 #include "ns3/net-device.h"
 #include "ns3/output-stream-wrapper.h"
+#include "ns3/md5.h"
 
 namespace ns3 {
 namespace idrm {
@@ -59,7 +60,7 @@ public:
   /// c-tor
   RoutingTableEntry (Ptr<NetDevice> dev = 0, Ipv4Address dst = Ipv4Address (), u_int32_t m_seqNo = 0,
                      Ipv4InterfaceAddress iface = Ipv4InterfaceAddress (), u_int32_t hops = 0, Ipv4Address nextHop = Ipv4Address (),
-                     Time lifetime = Simulator::Now (), Time SettlingTime = Simulator::Now (), bool changedEntries = false);
+                     Time lifetime = Simulator::Now (), Time SettlingTime = Simulator::Now (), bool changedEntries = false, unsigned char* bf =new unsigned char[100]);
 
   ~RoutingTableEntry ();
   Ipv4Address
@@ -167,6 +168,9 @@ public:
   {
     return m_entriesChanged;
   }
+  
+  unsigned char* bf;
+  
   /**
    * \brief Compare destination address
    * \return true if equal
@@ -241,6 +245,8 @@ public:
    * \param rt entry with destination address dst, if exists
    * \return true on success
    */
+  bool
+  LookupRouteByBF (Ipv4Address dst, RoutingTableEntry & rt);
   bool
   LookupRoute (Ipv4Address dst, RoutingTableEntry & rt);
   bool
@@ -333,6 +339,8 @@ public:
   }
   std::map<Ipv4Address, RoutingTableEntry> GetEntries() {return m_ipv4AddressEntry;}
   // \}
+  
+  bool BloomFilterContain(unsigned char* bf, uint32_t address);
 
 private:
   ///\name Fields

@@ -29,8 +29,8 @@
  * US Department of Defense (DoD), and ITTC at The University of Kansas.
  */
 
-#ifndef DSDV_PACKET_H
-#define DSDV_PACKET_H
+#ifndef IDRM_PACKET_H
+#define IDRM_PACKET_H
 
 #include <iostream>
 #include "ns3/header.h"
@@ -38,10 +38,10 @@
 #include "ns3/nstime.h"
 
 namespace ns3 {
-namespace dsdv {
+namespace idrm {
 /**
- * \ingroup dsdv
- * \brief DSDV Update Packet Format
+ * \ingroup idrm
+ * \brief IDRM Update Packet Format
  * \verbatim
  |      0        |      1        |      2        |       3       |
   0 1 2 3 4 5 6 7 0 1 2 3 4 5 6 7 0 1 2 3 4 5 6 7 0 1 2 3 4 5 6 7
@@ -55,11 +55,11 @@ namespace dsdv {
  * \endverbatim
  */
 
-class DsdvHeader : public Header
+class IdrmHeader : public Header
 {
 public:
-  DsdvHeader (Ipv4Address dst = Ipv4Address (), uint32_t hopcount = 0, uint32_t dstSeqNo = 0);
-  virtual ~DsdvHeader ();
+  IdrmHeader (Ipv4Address dst = Ipv4Address (), uint32_t hopcount = 0, uint32_t dstSeqNo = 0,unsigned char* bf = new unsigned char[100]);
+  virtual ~IdrmHeader ();
   static TypeId GetTypeId (void);
   virtual TypeId GetInstanceTypeId (void) const;
   virtual uint32_t GetSerializedSize () const;
@@ -67,6 +67,15 @@ public:
   virtual uint32_t Deserialize (Buffer::Iterator start);
   virtual void Print (std::ostream &os) const;
 
+  void SetBF(unsigned char* rtBF)
+  {
+    mencpy(bf,rtBF,100);
+  }
+
+  void GetBF(unsigned char* rtBF)
+  {
+    memcpy(rtBF,bf,100);
+  }
   void
   SetDst (Ipv4Address destination)
   {
@@ -101,8 +110,9 @@ private:
   Ipv4Address m_dst; ///< Destination IP Address
   uint32_t m_hopCount; ///< Number of Hops
   uint32_t m_dstSeqNo; ///< Destination Sequence Number
+  unsigned char* bf;
 };
-static inline std::ostream & operator<< (std::ostream& os, const DsdvHeader & packet)
+static inline std::ostream & operator<< (std::ostream& os, const IdrmHeader & packet)
 {
   packet.Print (os);
   return os;
@@ -110,4 +120,4 @@ static inline std::ostream & operator<< (std::ostream& os, const DsdvHeader & pa
 }
 }
 
-#endif /* DSDV_PACKET_H */
+#endif /* IDRM_PACKET_H */

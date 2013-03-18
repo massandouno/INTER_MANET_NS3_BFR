@@ -58,7 +58,7 @@ namespace idrm {
 class IdrmHeader : public Header
 {
 public:
-  IdrmHeader (Ipv4Address dst = Ipv4Address (), uint32_t hopcount = 0, uint32_t dstSeqNo = 0);
+  IdrmHeader (Ipv4Address dst = Ipv4Address (), uint32_t hopcount = 0, uint32_t dstSeqNo = 0,unsigned char* bf = new unsigned char[100]);
   virtual ~IdrmHeader ();
   static TypeId GetTypeId (void);
   virtual TypeId GetInstanceTypeId (void) const;
@@ -67,6 +67,15 @@ public:
   virtual uint32_t Deserialize (Buffer::Iterator start);
   virtual void Print (std::ostream &os) const;
 
+  void SetBF(unsigned char* rtBF)
+  {
+    memcpy(bf,rtBF,100);
+  }
+
+  void GetBF(unsigned char* rtBF)
+  {
+    memcpy(rtBF,bf,100);
+  }
   void
   SetDst (Ipv4Address destination)
   {
@@ -101,6 +110,7 @@ private:
   Ipv4Address m_dst; ///< Destination IP Address
   uint32_t m_hopCount; ///< Number of Hops
   uint32_t m_dstSeqNo; ///< Destination Sequence Number
+  unsigned char* bf;
 };
 static inline std::ostream & operator<< (std::ostream& os, const IdrmHeader & packet)
 {

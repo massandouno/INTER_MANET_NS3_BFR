@@ -44,7 +44,9 @@
 #include "ns3/ipv4-l3-protocol.h"
 #include "ns3/output-stream-wrapper.h"
 #include <map>
+#include "ns3/sgi-hashmap.h"
 using namespace std;
+using namespace sgi;
 
 namespace ns3 {
 namespace idrm {
@@ -90,7 +92,7 @@ public:
   void SetEnableRAFlag (bool f);
   bool GetEnableRAFlag () const;
   // \}
-
+  //void setBloomFilter();
  /**
   * Assign a fixed random variable stream number to the random variables
   * used by this model.  Return the number of streams (possibly zero) that
@@ -100,6 +102,8 @@ public:
   * \return the number of stream indices assigned by this model
   */
   int64_t AssignStreams (int64_t stream);
+  
+  unsigned char* bf;
 
 private:
   ///\name Protocol parameters.
@@ -154,7 +158,7 @@ private:
 
   map<Ipv4Address,int> m_nc;
   
-  Ptr<Node> pnd=m_ipv4->GetObject<Node>();
+  Ptr<Node> pnd;
 
 
 private:
@@ -211,9 +215,11 @@ private:
   /// Timer used by the trigger updates in case of Weighted Settling Time is used
   Timer m_triggeredExpireTimer;
 
+  //Timer m_bfTrigger;
   /// Provides uniform random variables.
   Ptr<UniformRandomVariable> m_uniformRandomVariable;  
 };
+  
 
 }
 }

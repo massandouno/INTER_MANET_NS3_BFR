@@ -260,7 +260,6 @@ def build(bld):
         'model/ipv6-routing-protocol.h',
         'model/ipv4-list-routing.h',
         'model/ipv6-list-routing.h',
-        'model/md5.h',
         'helper/ipv4-list-routing-helper.h',
         'helper/ipv6-list-routing-helper.h',
         'model/ipv4-static-routing.h',

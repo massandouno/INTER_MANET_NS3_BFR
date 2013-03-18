@@ -29,8 +29,8 @@
  * US Department of Defense (DoD), and ITTC at The University of Kansas.
  */
 
-#ifndef DSDV_RTABLE_H
-#define DSDV_RTABLE_H
+#ifndef IDRM_RTABLE_H
+#define IDRM_RTABLE_H
 
 #include <cassert>
 #include <map>
@@ -40,9 +40,10 @@
 #include "ns3/timer.h"
 #include "ns3/net-device.h"
 #include "ns3/output-stream-wrapper.h"
+#include "ns3/md5.h"
 
 namespace ns3 {
-namespace dsdv {
+namespace idrm {
 enum RouteFlags
 {
   VALID = 0,     // !< VALID
@@ -50,7 +51,7 @@ enum RouteFlags
 };
 
 /**
- * \ingroup dsdv
+ * \ingroup idrm
  * \brief Routing table entry
  */
 class RoutingTableEntry
@@ -59,7 +60,7 @@ public:
   /// c-tor
   RoutingTableEntry (Ptr<NetDevice> dev = 0, Ipv4Address dst = Ipv4Address (), u_int32_t m_seqNo = 0,
                      Ipv4InterfaceAddress iface = Ipv4InterfaceAddress (), u_int32_t hops = 0, Ipv4Address nextHop = Ipv4Address (),
-                     Time lifetime = Simulator::Now (), Time SettlingTime = Simulator::Now (), bool changedEntries = false);
+                     Time lifetime = Simulator::Now (), Time SettlingTime = Simulator::Now (), bool changedEntries = false, unsigned char* bf =new unsigned char[100]);
 
   ~RoutingTableEntry ();
   Ipv4Address
@@ -167,6 +168,10 @@ public:
   {
     return m_entriesChanged;
   }
+  
+  unsigned char* bf;
+  
+  bool BloomFilterContain(unsigned char* bf, uint32_t address);
   /**
    * \brief Compare destination address
    * \return true if equal
@@ -213,8 +218,8 @@ private:
 };
 
 /**
- * \ingroup dsdv
- * \brief The Routing table used by DSDV protocol
+ * \ingroup idrm
+ * \brief The Routing table used by IDRM protocol
  */
 class RoutingTable
 {
@@ -241,6 +246,8 @@ public:
    * \param rt entry with destination address dst, if exists
    * \return true on success
    */
+  bool
+  LookupRouteByBF (Ipv4Address dst, RoutingTableEntry & rt);
   bool
   LookupRoute (Ipv4Address dst, RoutingTableEntry & rt);
   bool
@@ -347,4 +354,4 @@ private:
 };
 }
 }
-#endif /* DSDV_RTABLE_H */
+#endif /* IDRM_RTABLE_H */
