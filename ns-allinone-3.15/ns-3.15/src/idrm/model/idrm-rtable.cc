@@ -72,15 +72,22 @@ bool
 RoutingTable::LookupRouteByBF (Ipv4Address id,
                            RoutingTableEntry & rt)
 {
+    bool find = false;
+    
+    uint32_t minHops = 9999;
     for(std::map<Ipv4Address, RoutingTableEntry>::iterator i = m_ipv4AddressEntry.begin();i != m_ipv4AddressEntry.end();i++)
     {
         if(BloomFilterContain(i->second.bf, id.Get()))
         {
-            rt = i->second;
-            return true;
+            if(i->second.GetHop() < minHops)
+            {
+                rt = i->second;
+                minHops = i->second.GetHop();
+                find = true;
+            }
         }
     }
-    return false;
+    return find;
 }
 
 bool
