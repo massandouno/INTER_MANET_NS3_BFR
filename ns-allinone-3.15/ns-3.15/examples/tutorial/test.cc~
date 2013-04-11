@@ -1,0 +1,125 @@
+#include "ns3/core-module.h"
+#include "ns3/point-to-point-module.h"
+#include "ns3/network-module.h"
+#include "ns3/applications-module.h"
+#include "ns3/wifi-module.h"
+#include "ns3/mobility-module.h"
+#include "ns3/csma-module.h"
+#include "ns3/internet-module.h"
+
+// Default Network Topology
+//
+//   Wifi 10.1.3.0
+//                 AP
+//  *    *    *    *
+//  |    |    |    |    10.1.1.0
+// n5   n6   n7   n0 -------------- n1   n2   n3   n4
+//                   point-to-point  |    |    |    |
+//                                   ================
+//                                     LAN 10.1.2.0
+
+using namespace ns3;
+
+NS_LOG_COMPONENT_DEFINE ("ThirdScriptExample");
+
+int 
+main (int argc, char *argv[])
+{
+  LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_INFO);
+  LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO);
+  
+  NodeContainer GatewayNode;
+  GatewayNode.Create (1);
+
+  NodeContainer wifiNodesL;
+  wifiNodesL.Add(GatewayNode.Get(0));
+  wifiNodesL.Create (1);
+
+  NodeContainer wifiNodesR;
+  wifiNodesR.Add(GatewayNode.Get(0));
+  wifiNodesR.Create (1);  
+
+  YansWifiChannelHelper channelL = YansWifiChannelHelper::Default ();
+  YansWifiPhyHelper phyL = YansWifiPhyHelper::Default ();
+  phyL.SetChannel (channelL.Create ());
+
+  WifiHelper wifiL = WifiHelper::Default ();
+  wifiL.SetRemoteStationManager ("ns3::AarfWifiManager");
+
+  NqosWifiMacHelper macL = NqosWifiMacHelper::Default ();
+  
+  macL.SetType("ns3::AdhocWifiMac");
+
+  YansWifiChannelHelper channelR = YansWifiChannelHelper::Default ();
+  YansWifiPhyHelper phyR = YansWifiPhyHelper::Default ();
+  phyR.SetChannel (channelR.Create ());
+
+  WifiHelper wifiR = WifiHelper::Default ();
+  wifiR.SetRemoteStationManager ("ns3::AarfWifiManager");
+
+  NqosWifiMacHelper macR = NqosWifiMacHelper::Default ();
+  
+  macR.SetType("ns3::AdhocWifiMac");
+
+  NetDeviceContainer leftDevices;
+  leftDevices = wifiL.Install (phyL, macL, wifiNodesL);
+
+  NetDeviceContainer rightDevices;
+  rightDevices = wifiR.Install (phyR, macR, wifiNodesR); 
+
+  MobilityHelper mobility;
+
+  mobility.SetPositionAllocator ("ns3::GridPositionAllocator",
+                                 "MinX", DoubleValue (0.0),
+                                 "MinY", DoubleValue (0.0),
+                                 "DeltaX", DoubleValue (5.0),
+                                 "DeltaY", DoubleValue (10.0),
+                                 "GridWidth", UintegerValue (3),
+                                 "LayoutType", StringValue ("RowFirst"));
+
+
+  mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+  mobility.Install (wifiNodesL);
+  mobility.Install (wifiNodesR);
+
+  InternetStackHelper stack;
+  stack.Install (wifiNodesL);
+  stack.Install (wifiNodesR.Get(1));
+
+  Ipv4AddressHelper address;
+
+  address.SetBase ("10.1.1.0", "255.255.255.0");
+  Ipv4InterfaceContainer leftInterface;
+  leftInterface = address.Assign(leftDevices);
+
+  address.SetBase ("10.1.3.0", "255.255.255.0");
+  Ipv4InterfaceContainer rightInterface;
+  rightInterface = address.Assign (rightDevices);
+
+  UdpEchoServerHelper echoServer (9);
+
+  ApplicationContainer serverApps = echoServer.Install (wifiNodesR.Get (1));
+  serverApps.Start (Seconds (1.0));
+  serverApps.Stop (Seconds (10.0));
+
+  UdpEchoClientHelper echoClient (rightInterface.GetAddress (1), 9);
+  //echoClient.SetAttribute ("MaxPackets", UintegerValue (10));
+  echoClient.SetAttribute ("Interval", TimeValue (Seconds (0.001)));
+  echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
+
+  ApplicationContainer clientApps = 
+    echoClient.Install (wifiNodesL.Get (1));
+  clientApps.Start (Seconds (2.0));
+  clientApps.Stop (Seconds (20.0));
+
+  Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
+
+  Simulator::Stop (Seconds (20.0));
+
+  phyL.EnablePcap("test",leftDevices);
+  phyR.EnablePcap("test",rightDevices);
+
+  Simulator::Run ();
+  Simulator::Destroy ();
+  return 0;
+}

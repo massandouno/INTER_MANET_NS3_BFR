@@ -1,0 +1,218 @@
+>>>>>>>>>>>>>>>> [['void', 'ns3::Ptr<ns3::Socket>', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty'], ['void', 'ns3::Ptr<ns3::Socket>', 'unsigned int', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty'], ['void', 'ns3::Ptr<ns3::Socket>', 'ns3::Address const&', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty'], ['bool', 'ns3::Ptr<ns3::Socket>', 'ns3::Address const&', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty', 'ns3::empty'], ['void', 'ns3::Ptr<ns3::NetDevice>', 'ns3::Ptr<ns3::Packet const>', 'unsigned short', 'ns3::Address const&', 'ns3::Address const&', 'ns3::NetDevice::PacketType', 'ns3::empty', 'ns3::empty', 'ns3::empty']]
+***** registering callback handler: 'ns3::Callback< void, ns3::Ptr< ns3::Socket >, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'
+***** registering callback handler: 'ns3::Callback< void, ns3::Ptr< ns3::Socket >, unsigned int, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'
+***** registering callback handler: 'ns3::Callback< void, ns3::Ptr< ns3::Socket >, ns3::Address const &, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'
+***** registering callback handler: 'ns3::Callback< bool, ns3::Ptr< ns3::Socket >, ns3::Address const &, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'
+***** registering callback handler: 'ns3::Callback< void, ns3::Ptr< ns3::NetDevice >, ns3::Ptr< ns3::Packet const >, unsigned short, ns3::Address const &, ns3::Address const &, ns3::NetDevice::PacketType, ns3::empty, ns3::empty, ns3::empty >'
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:492: Warning: exception TypeConfigurationError('direction not given',) in wrapper <pybindgen.cppmethod.CppConstructor object at 0x977026c>
+  cls.add_constructor([param('uint8_t', 'type'), param('uint8_t const *', 'buffer'), param('uint8_t', 'len')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:503: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::CopyAllFrom (params?);
+  [param('uint8_t const *', 'buffer'), param('uint8_t', 'len')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:508: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::CopyAllTo (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:512: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::CopyFrom (params?);
+  [param('uint8_t const *', 'buffer'), param('uint8_t', 'len')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:517: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::CopyTo (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:806: Warning: exception TypeLookupError(['std::_List_const_iterator< ns3::AttributeConstructionList::Item >'],) in wrapper public: retval? ???::Begin (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:811: Warning: exception TypeLookupError(['std::_List_const_iterator< ns3::AttributeConstructionList::Item >'],) in wrapper public: retval? ???::End (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:862: Warning: exception TypeLookupError(['std::ostream *'],) in wrapper public: retval? ???::CopyData (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:867: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::CopyData (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:881: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Deserialize (params?);
+  [param('uint8_t const *', 'buffer'), param('uint32_t', 'size')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:911: Warning: exception TypeLookupError(['uint8_t *'],) in wrapper public: retval? ???::PeekData (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:924: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Serialize (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:979: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Read (params?);
+  [param('uint8_t *', 'buffer'), param('uint32_t', 'size')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1023: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Write (params?);
+  [param('uint8_t const *', 'buffer'), param('uint32_t', 'size')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1209: Warning: exception TypeLookupError(['ns3::Ptr< ns3::EventImpl > &'],) in wrapper <pybindgen.cppmethod.CppConstructor object at 0x9971a4c>
+  cls.add_constructor([param('ns3::Ptr< ns3::EventImpl > const &', 'impl'), param('uint64_t', 'ts'), param('uint32_t', 'context'), param('uint32_t', 'uid')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1243: Warning: exception TypeConfigurationError('Either caller_owns_return or self.reference_existing_object must be given',) in wrapper public: retval? ???::PeekEventImpl (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1322: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Deserialize (params?);
+  is_static=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1387: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: retval? ???::Print (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1392: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Serialize (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1505: Warning: exception TypeLookupError(['std::pair< ns3::Ptr< ns3::Ipv4 >, unsigned int >'],) in wrapper public: retval? ???::Add (params?);
+  [param('std::pair< ns3::Ptr< ns3::Ipv4 >, unsigned int >', 'ipInterfacePair')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1514: Warning: exception TypeLookupError(['__gnu_cxx::__normal_iterator< std::pair< ns3::Ptr< ns3::Ipv4 >, unsigned int > const, std::vector< std::pair< ns3::Ptr< ns3::Ipv4 >, unsigned int > > >'],) in wrapper public: retval? ???::Begin (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1519: Warning: exception TypeLookupError(['__gnu_cxx::__normal_iterator< std::pair< ns3::Ptr< ns3::Ipv4 >, unsigned int > const, std::vector< std::pair< ns3::Ptr< ns3::Ipv4 >, unsigned int > > >'],) in wrapper public: retval? ???::End (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1524: Warning: exception TypeLookupError(['std::pair< ns3::Ptr< ns3::Ipv4 >, unsigned int >'],) in wrapper public: retval? ???::Get (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1597: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: retval? ???::Print (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1614: Warning: exception TypeConfigurationError('direction not given',) in wrapper <pybindgen.cppmethod.CppConstructor object at 0x9a417ec>
+  cls.add_constructor([param('uint8_t *', 'address')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1632: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Deserialize (params?);
+  is_static=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1657: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::GetBytes (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1741: Warning: exception TypeLookupError(['ns3::Mac48Address'],) in wrapper public: retval? ???::MakeAutoconfiguredAddress (params?);
+  is_static=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1746: Warning: exception TypeLookupError(['ns3::Mac48Address'],) in wrapper public: retval? ???::MakeAutoconfiguredLinkLocalAddress (params?);
+  is_static=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1761: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: retval? ???::Print (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1766: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Serialize (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1774: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Set (params?);
+  [param('uint8_t *', 'address')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1895: Warning: exception TypeLookupError(['__gnu_cxx::__normal_iterator< std::pair< ns3::Ptr< ns3::Ipv6 >, unsigned int > const, std::vector< std::pair< ns3::Ptr< ns3::Ipv6 >, unsigned int > > >'],) in wrapper public: retval? ???::Begin (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1900: Warning: exception TypeLookupError(['__gnu_cxx::__normal_iterator< std::pair< ns3::Ptr< ns3::Ipv6 >, unsigned int > const, std::vector< std::pair< ns3::Ptr< ns3::Ipv6 >, unsigned int > > >'],) in wrapper public: retval? ???::End (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1933: Warning: exception TypeConfigurationError('direction not given',) in wrapper <pybindgen.cppmethod.CppConstructor object at 0x9abc4cc>
+  cls.add_constructor([param('uint8_t *', 'prefix')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1946: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::GetBytes (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:1981: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: retval? ???::Print (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2011: Warning: exception TypeLookupError(['__gnu_cxx::__normal_iterator< ns3::Ptr< ns3::NetDevice > const, std::vector< ns3::Ptr< ns3::NetDevice > > >'],) in wrapper public: retval? ???::Begin (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2016: Warning: exception TypeLookupError(['__gnu_cxx::__normal_iterator< ns3::Ptr< ns3::NetDevice > const, std::vector< ns3::Ptr< ns3::NetDevice > > >'],) in wrapper public: retval? ???::End (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2062: Warning: exception TypeLookupError(['__gnu_cxx::__normal_iterator< ns3::Ptr< ns3::Node > const, std::vector< ns3::Ptr< ns3::Node > > >'],) in wrapper public: retval? ???::Begin (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2075: Warning: exception TypeLookupError(['__gnu_cxx::__normal_iterator< ns3::Ptr< ns3::Node > const, std::vector< ns3::Ptr< ns3::Node > > >'],) in wrapper public: retval? ???::End (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2163: Warning: exception TypeConfigurationError('Missing transfer_ownership option',) in wrapper public: retval? ???::Delete (params?);
+  is_static=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2236: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Deserialize (params?);
+  [param('uint8_t const *', 'buffer'), param('uint32_t', 'size')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2277: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Serialize (params?) const;
+  is_const=True)
+bindings/python/ns3modulegen-modular.py:27: UserWarning: exception TypeLookupError(['uint8_t [ 20 ]'],) in wrapper None
+  warnings.warn("exception %r in wrapper %s" % (exception, wrapper))
+bindings/python/ns3modulegen-modular.py:27: UserWarning: exception TypeConfigurationError('Either caller_owns_return or self.reference_existing_object must be given',) in wrapper None
+  warnings.warn("exception %r in wrapper %s" % (exception, wrapper))
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2404: Warning: exception TypeLookupError(['uint32_t &'],) in wrapper public: retval? ???::Diff (params?);
+  is_static=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2458: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Read (params?);
+  [param('uint8_t * const', 'data'), param('uint32_t', 'maxBytes'), param('uint32_t &', 'tsSec'), param('uint32_t &', 'tsUsec'), param('uint32_t &', 'inclLen'), param('uint32_t &', 'origLen'), param('uint32_t &', 'readLen')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2462: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Write (params?);
+  [param('uint32_t', 'tsSec'), param('uint32_t', 'tsUsec'), param('uint8_t const * const', 'data'), param('uint32_t', 'totalLen')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2858: Warning: exception TypeLookupError(['ns3::Ptr< ns3::SimulatorImpl >', 'ns3::SimulatorImpl *'],) in wrapper public: retval? ???::GetImplementation (params?);
+  is_static=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2893: Warning: exception TypeLookupError(['ns3::Ptr< ns3::SimulatorImpl >', 'ns3::SimulatorImpl *'],) in wrapper public: retval? ???::SetImplementation (params?);
+  is_static=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2935: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: virtual retval? ???::Print (params?) const = 0;
+  is_pure_virtual=True, is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2947: Warning: exception TypeConfigurationError('direction not given',) in wrapper <pybindgen.cppmethod.CppConstructor object at 0x9d1d08c>
+  cls.add_constructor([param('uint8_t *', 'start'), param('uint8_t *', 'end')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2955: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Read (params?);
+  [param('uint8_t *', 'buffer'), param('uint32_t', 'size')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:2983: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Write (params?);
+  [param('uint8_t const *', 'buffer'), param('uint32_t', 'size')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:3132: Warning: exception TypeLookupError(['ns3::Callback< ns3::ObjectBase *, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: retval? ???::GetConstructor (params?) const;
+  is_const=True)
+bindings/python/ns3modulegen-modular.py:27: UserWarning: exception TypeLookupError(['short unsigned int'],) in wrapper None
+  warnings.warn("exception %r in wrapper %s" % (exception, wrapper))
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:3397: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: virtual retval? ???::Print (params?) const = 0;
+  is_pure_virtual=True, is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:3425: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: virtual retval? ???::Print (params?) const = 0;
+  is_pure_virtual=True, is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:3477: Warning: exception TypeLookupError(['ns3::Ipv4RoutingHelper &'],) in wrapper public: retval? ???::SetRoutingHelper (params?);
+  [param('ns3::Ipv4RoutingHelper const &', 'routing')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:3481: Warning: exception TypeLookupError(['ns3::Ipv6RoutingHelper &'],) in wrapper public: retval? ???::SetRoutingHelper (params?);
+  [param('ns3::Ipv6RoutingHelper const &', 'routing')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:3620: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: virtual retval? ???::Print (params?) const;
+  is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:3748: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: virtual retval? ???::Print (params?) const;
+  is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:3895: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Write (params?);
+  [param('ns3::Time', 't'), param('uint8_t const *', 'buffer'), param('uint32_t', 'length')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4164: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Recv (params?);
+  [param('uint8_t *', 'buf'), param('uint32_t', 'size'), param('uint32_t', 'flags')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4177: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::RecvFrom (params?);
+  [param('uint8_t *', 'buf'), param('uint32_t', 'size'), param('uint32_t', 'flags'), param('ns3::Address &', 'fromAddress')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4190: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Send (params?);
+  [param('uint8_t const *', 'buf'), param('uint32_t', 'size'), param('uint32_t', 'flags')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4199: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::SendTo (params?);
+  [param('uint8_t const *', 'buf'), param('uint32_t', 'size'), param('uint32_t', 'flags'), param('ns3::Address const &', 'address')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4329: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: virtual retval? ???::Print (params?) const;
+  is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4375: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: virtual retval? ???::Print (params?) const;
+  is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4429: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: virtual retval? ???::Print (params?) const;
+  is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4645: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: virtual retval? ???::Print (params?) const = 0;
+  is_pure_virtual=True, is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4846: Warning: exception TypeLookupError(['ns3::Callback< void, ns3::Ptr< ns3::Packet >, ns3::Ipv4Address, ns3::Ipv4Address, unsigned char, ns3::Ptr< ns3::Ipv4Route >, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: virtual retval? ???::GetDownTarget (params?) const = 0;
+  is_pure_virtual=True, is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4851: Warning: exception TypeLookupError(['ns3::Callback< void, ns3::Ptr< ns3::Packet >, ns3::Ipv6Address, ns3::Ipv6Address, unsigned char, ns3::Ptr< ns3::Ipv6Route >, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: virtual retval? ???::GetDownTarget6 (params?) const = 0;
+  is_pure_virtual=True, is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4866: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Ipv4Interface >', 'ns3::Ipv4Interface *'],) in wrapper public: virtual retval? ???::Receive (params?) = 0;
+  is_pure_virtual=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4876: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: virtual retval? ???::ReceiveIcmp (params?);
+  is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4881: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: virtual retval? ???::ReceiveIcmp (params?);
+  is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4886: Warning: exception TypeLookupError(['ns3::Callback< void, ns3::Ptr< ns3::Packet >, ns3::Ipv4Address, ns3::Ipv4Address, unsigned char, ns3::Ptr< ns3::Ipv4Route >, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: virtual retval? ???::SetDownTarget (params?) = 0;
+  is_pure_virtual=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:4891: Warning: exception TypeLookupError(['ns3::Callback< void, ns3::Ptr< ns3::Packet >, ns3::Ipv6Address, ns3::Ipv6Address, unsigned char, ns3::Ptr< ns3::Ipv6Route >, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: virtual retval? ???::SetDownTarget6 (params?) = 0;
+  is_pure_virtual=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:5140: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Ipv4Interface >', 'ns3::Ipv4Interface *'],) in wrapper public: retval? ???::GetInterface (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:5486: Warning: exception TypeLookupError(['ns3::Callback< void, ns3::Ptr< ns3::Ipv4Route >, ns3::Ptr< ns3::Packet const >, ns3::Ipv4Header const &, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: virtual retval? ???::RouteInput (params?) = 0;
+  is_pure_virtual=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:5563: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Ipv6RoutingProtocol >', 'ns3::Ipv6RoutingProtocol *'],) in wrapper public: virtual retval? ???::GetRoutingProtocol (params?) const = 0;
+  is_pure_virtual=True, is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:5613: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Ipv6RoutingProtocol >', 'ns3::Ipv6RoutingProtocol *'],) in wrapper public: virtual retval? ???::SetRoutingProtocol (params?) = 0;
+  is_pure_virtual=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:5860: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Ipv6Route >', 'ns3::Ipv6Route *'],) in wrapper public: retval? ???::Send (params?);
+  [param('ns3::Ptr< ns3::Packet >', 'packet'), param('ns3::Ipv6Address', 'source'), param('ns3::Ipv6Address', 'destination'), param('uint8_t', 'protocol'), param('ns3::Ptr< ns3::Ipv6Route >', 'route')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:5865: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Ipv6RoutingProtocol >', 'ns3::Ipv6RoutingProtocol *'],) in wrapper public: virtual retval? ???::SetRoutingProtocol (params?);
+  is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:5870: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Ipv6RoutingProtocol >', 'ns3::Ipv6RoutingProtocol *'],) in wrapper public: virtual retval? ???::GetRoutingProtocol (params?) const;
+  is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:5970: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Icmpv6L4Protocol >', 'ns3::Icmpv6L4Protocol *'],) in wrapper public: retval? ???::GetIcmpv6 (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6070: Warning: exception TypeLookupError(['ns3::Callback< void, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: virtual retval? ???::AddLinkChangeCallback (params?) = 0;
+  is_pure_virtual=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6085: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Channel >', 'ns3::Channel *'],) in wrapper public: virtual retval? ???::GetChannel (params?) const = 0;
+  is_pure_virtual=True, is_const=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6180: Warning: exception TypeLookupError(['ns3::Callback< bool, ns3::Ptr< ns3::NetDevice >, ns3::Ptr< ns3::Packet const >, short unsigned int, ns3::Address const &, ns3::Address const &, ns3::NetDevice::PacketType, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: virtual retval? ???::SetPromiscReceiveCallback (params?) = 0;
+  is_pure_virtual=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6185: Warning: exception TypeLookupError(['ns3::Callback< bool, ns3::Ptr< ns3::NetDevice >, ns3::Ptr< ns3::Packet const >, short unsigned int, ns3::Address const &, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: virtual retval? ???::SetReceiveCallback (params?) = 0;
+  is_pure_virtual=True, is_virtual=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6247: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Application >', 'ns3::Application *'],) in wrapper public: retval? ???::AddApplication (params?);
+  [param('ns3::Ptr< ns3::Application >', 'application')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6261: Warning: exception TypeLookupError(['ns3::Ptr< ns3::Application >', 'ns3::Application *'],) in wrapper public: retval? ???::GetApplication (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6295: Warning: exception TypeLookupError(['ns3::Callback< void, ns3::Ptr< ns3::NetDevice >, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: retval? ???::RegisterDeviceAdditionListener (params?);
+  [param('ns3::Callback< void, ns3::Ptr< ns3::NetDevice >, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', 'listener')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6303: Warning: exception TypeLookupError(['ns3::Callback< void, ns3::Ptr< ns3::NetDevice >, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >'],) in wrapper public: retval? ???::UnregisterDeviceAdditionListener (params?);
+  [param('ns3::Callback< void, ns3::Ptr< ns3::NetDevice >, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty, ns3::empty >', 'listener')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6366: Warning: exception TypeLookupError(['std::ostream *'],) in wrapper <pybindgen.cppmethod.CppConstructor object at 0xa4f422c>
+  cls.add_constructor([param('std::ostream *', 'os')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6370: Warning: exception TypeLookupError(['std::ostream *'],) in wrapper public: retval? ???::GetStream (params?);
+  [])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6382: Warning: exception TypeConfigurationError('direction not given',) in wrapper <pybindgen.cppmethod.CppConstructor object at 0xa4f4ecc>
+  cls.add_constructor([param('uint8_t const *', 'buffer'), param('uint32_t', 'size'), param('bool', 'magic')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6384: Warning: exception TypeConfigurationError('direction not given',) in wrapper <pybindgen.cppmethod.CppConstructor object at 0xa4f4eec>
+  cls.add_constructor([param('uint8_t const *', 'buffer'), param('uint32_t', 'size')])
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6425: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::CopyData (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6430: Warning: exception TypeLookupError(['std::ostream *'],) in wrapper public: retval? ???::CopyData (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6485: Warning: exception TypeLookupError(['uint8_t *'],) in wrapper public: retval? ???::PeekData (params?) const;
+  deprecated=True, is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6504: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: retval? ???::Print (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6509: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: retval? ???::PrintByteTags (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6514: Warning: exception TypeLookupError(['std::ostream &'],) in wrapper public: retval? ???::PrintPacketTags (params?) const;
+  is_const=True)
+/home/brook/nsuser/ns-allinone-3.15/ns-3.15/src/point-to-point-layout/bindings/modulegen__gcc_ILP32.py:6547: Warning: exception TypeConfigurationError('direction not given',) in wrapper public: retval? ???::Serialize (params?) const;
+  is_const=True)

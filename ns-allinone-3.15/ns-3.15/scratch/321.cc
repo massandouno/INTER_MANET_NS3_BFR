@@ -1,0 +1,134 @@
+#include "ns3/core-module.h"
+#include "ns3/point-to-point-module.h"
+#include "ns3/network-module.h"
+#include "ns3/applications-module.h"
+#include "ns3/wifi-module.h"
+#include "ns3/mobility-module.h"
+#include "ns3/csma-module.h"
+#include "ns3/internet-module.h"
+#include "ns3/netanim-module.h"
+#include "ns3/aodv-module.h"
+#include "ns3/olsr-module.h"
+#include "ns3/dsdv-module.h"
+#include "ns3/dsr-module.h"
+#include <iostream>
+
+using namespace ns3;
+
+NS_LOG_COMPONENT_DEFINE ("OneGateTwoNode");
+
+int 
+main (int argc, char *argv[])
+{
+  
+  LogComponentEnable ("UdpEchoClientApplication", LOG_LEVEL_INFO);
+  LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO);
+  
+  NodeContainer GatewayNode;
+  GatewayNode.Create (3);
+
+  YansWifiChannelHelper channelL = YansWifiChannelHelper::Default ();
+  YansWifiPhyHelper phyL = YansWifiPhyHelper::Default ();
+  phyL.SetChannel (channelL.Create ());
+
+  WifiHelper wifiL = WifiHelper::Default ();
+  wifiL.SetStandard(WIFI_PHY_STANDARD_80211b);
+  wifiL.SetRemoteStationManager("ns3::ConstantRateWifiManager"
+  				,"DataMode",
+  				StringValue("DsssRate5_5Mbps"),
+                                "ControlMode",
+				StringValue("DsssRate5_5Mbps"));
+
+  NqosWifiMacHelper macL = NqosWifiMacHelper::Default ();
+  
+  macL.SetType("ns3::AdhocWifiMac");
+
+  NetDeviceContainer leftDevices;
+  leftDevices = wifiL.Install (phyL, macL, GatewayNode);
+  
+  MobilityHelper mobilityL;
+  Ptr<ListPositionAllocator> positionAllocL;
+  positionAllocL = CreateObject<ListPositionAllocator>();
+  positionAllocL->Add(Vector( 0.0, 0.0, 0.0));
+  positionAllocL->Add(Vector( -100.0, 0.0, 0.0));
+  positionAllocL->Add(Vector( 100.0, 0.0, 0.0));
+  mobilityL.SetPositionAllocator(positionAllocL); 
+  mobilityL.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
+  mobilityL.Install (GatewayNode);
+  
+  AodvHelper aodv;
+  OlsrHelper olsr;
+  DsdvHelper dsdv;
+  DsrHelper dsr;
+  Ipv4StaticRoutingHelper staticRouting;
+  
+  Ipv4ListRoutingHelper list;
+  list.Add (staticRouting, 0);
+  list.Add (aodv, 10);
+  list.Add (olsr, 100);
+  Ipv4ListRoutingHelper listL;
+  listL.Add (staticRouting, 0);
+  listL.Add (aodv, 10);
+  Ipv4ListRoutingHelper listR;
+  listR.Add (staticRouting, 0);
+  listR.Add (olsr, 10);
+  
+  InternetStackHelper stack;
+  stack.SetRoutingHelper(aodv);
+  stack.Install (GatewayNode);
+  /*stack.SetRoutingHelper(list);
+  stack.Install (wifiNodesL.Get(0));
+  stack.Reset();
+  stack.SetRoutingHelper(listL);
+  stack.Install (wifiNodesL.Get(1));
+  stack.Reset();
+  stack.SetRoutingHelper(listR);*/
+  
+  Ptr<OutputStreamWrapper> routingStreamOLSR =
+  Create<OutputStreamWrapper> ("olsr.routes",std::ios::out);
+  olsr.PrintRoutingTableAllEvery (Seconds (60), routingStreamOLSR);
+  Ptr<OutputStreamWrapper> routingStreamAODV =
+  Create<OutputStreamWrapper> ("aodv.routes",std::ios::out);
+  aodv.PrintRoutingTableAllEvery (Seconds (60), routingStreamAODV);
+
+  Ipv4AddressHelper address;
+  
+  address.SetBase ("10.1.1.0", "255.255.255.0");
+  Ipv4InterfaceContainer leftInterface;
+  leftInterface = address.Assign(leftDevices);
+  
+  UdpEchoServerHelper echoServer (9);
+
+  ApplicationContainer serverApps = echoServer.Install (GatewayNode.Get (2));
+  serverApps.Start (Seconds (30.0));
+  serverApps.Stop (Seconds (300.0));
+
+  UdpEchoClientHelper echoClient (leftInterface.GetAddress (2), 9);
+  echoClient.SetAttribute ("MaxPackets", UintegerValue (1000));
+  echoClient.SetAttribute ("Interval", TimeValue (Seconds (0.0008)));
+  echoClient.SetAttribute ("PacketSize", UintegerValue (1024));
+
+  ApplicationContainer clientApps = 
+    echoClient.Install (GatewayNode.Get (0));
+  clientApps.Start (Seconds (30.0));
+  clientApps.Stop (Seconds (300.0));
+
+  //这里可能有问题
+  //Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
+  
+  //AnimationInterface anim ("animation.xml");
+  //anim.SetMobilityPollInterval (Seconds (1));
+  //anim.SetConstantPosition (wifiNodesL.Get(1), 0, 0);
+  //anim.SetConstantPosition (wifiNodesL.Get(0), 100, 0);
+  //anim.SetConstantPosition (wifiNodesR.Get(1), 200, 0);
+  //anim.EnablePacketMetadata (true);
+
+  Simulator::Stop (Seconds (300.0));
+
+  phyL.EnablePcap("troughPutL&G",leftDevices);
+  //phyR.EnablePcap("troughPutR&G",rightDevices);
+
+  Simulator::Run ();
+  Simulator::Destroy ();
+  return 0;
+}

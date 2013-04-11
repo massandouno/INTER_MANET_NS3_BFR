@@ -13,7 +13,9 @@
 #include "ns3/dsr-module.h"
 #include "ns3/ipv4-list-routing-helper.h"
 #include "ns3/netanim-module.h"
+#include <vector>
 
+using namespace std;
 using namespace ns3;
 
 uint32_t nMANET = 7;
@@ -207,40 +209,47 @@ int main(int argc, char* argv[])
                                  "Y", StringValue ("100.0"),
                                  "Rho", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=100.0]"),
                                  "Theta", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=6.28]")); //2*pi = 6.28
-  mobility1.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
-                             "Bounds", RectangleValue (Rectangle (0, 1000, 0, 1000)));
+  //mobility1.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
+  //                           "Bounds", RectangleValue (Rectangle (0, 1000, 0, 1000))); //ConstantPositionMobilityModel
+
+  mobility1.SetMobilityModel ("ns3::ConstantPositionMobilityModel"); 
                              
   mobility2.SetPositionAllocator ("ns3::RandomDiscPositionAllocator",
-                                 "X", StringValue ("500.0"),
+                                 "X", StringValue ("200.0"),
                                  "Y", StringValue ("100.0"),
                                  "Rho", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=100.0]"),
                                  "Theta", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=6.28]")); //2*pi = 6.28
-  mobility2.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
-                             "Bounds", RectangleValue (Rectangle (0, 1000, 0, 1000)));
+  //mobility2.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
+  //                           "Bounds", RectangleValue (Rectangle (0, 1000, 0, 1000)));
+
+  mobility2.SetMobilityModel ("ns3::ConstantPositionMobilityModel"); 
                              
   mobility3.SetPositionAllocator ("ns3::RandomDiscPositionAllocator",
-                                 "X", StringValue ("900.0"),
+                                 "X", StringValue ("300.0"),
                                  "Y", StringValue ("100.0"),
                                  "Rho", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=100.0]"),
                                  "Theta", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=6.28]")); //2*pi = 6.28
-  mobility3.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
-                             "Bounds", RectangleValue (Rectangle (0, 1000, 0, 1000)));
+  //mobility3.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
+  //                           "Bounds", RectangleValue (Rectangle (0, 1000, 0, 1000)));
+  mobility3.SetMobilityModel ("ns3::ConstantPositionMobilityModel"); 
                              
   mobility4.SetPositionAllocator ("ns3::RandomDiscPositionAllocator",
-                                 "X", StringValue ("200.0"),
-                                 "Y", StringValue ("900.0"),
+                                 "X", StringValue ("100.0"),
+                                 "Y", StringValue ("200.0"),
                                  "Rho", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=100.0]"),
                                  "Theta", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=6.28]")); //2*pi = 6.28
-  mobility4.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
-                             "Bounds", RectangleValue (Rectangle (0, 1000, 0, 1000)));
+  //mobility4.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
+  //                           "Bounds", RectangleValue (Rectangle (0, 1000, 0, 1000)));
+  mobility4.SetMobilityModel ("ns3::ConstantPositionMobilityModel"); 
                              
   mobility5.SetPositionAllocator ("ns3::RandomDiscPositionAllocator",
-                                 "X", StringValue ("800.0"),
-                                 "Y", StringValue ("900.0"),
+                                 "X", StringValue ("200.0"),
+                                 "Y", StringValue ("300.0"),
                                  "Rho", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=100.0]"),
                                  "Theta", StringValue("ns3::UniformRandomVariable[Min=0.0|Max=6.28]")); //2*pi = 6.28
-  mobility5.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
-                             "Bounds", RectangleValue (Rectangle (0, 1000, 0, 1000)));
+  //mobility5.SetMobilityModel ("ns3::RandomWalk2dMobilityModel",
+  //                           "Bounds", RectangleValue (Rectangle (0, 1000, 0, 1000)));
+  mobility5.SetMobilityModel ("ns3::ConstantPositionMobilityModel"); 
   
 
   mobility1.Install (Platoon1);
@@ -250,6 +259,27 @@ int main(int argc, char* argv[])
   mobility5.Install (Platoon5);
   //We got CMNodes from Platoon Nodes Containers
   //No need to assign mobility to CMNodes again.
+
+////////////////////////////////////////////////////////
+
+  for(int i=2; i<=3; i++)
+	{
+		Ptr<MobilityModel> test = Platoon1.Get(i)->GetObject<MobilityModel>();
+		Vector pos = test->GetPosition();
+		std::cout<< "MANET 1 Gateway " << i-1 << "Pos X = " << pos.x << "Pos Y = " << pos.y << std::endl;
+		test = Platoon2.Get(i)->GetObject<MobilityModel>();
+		pos = test->GetPosition();
+		std::cout<< "MANET 2 Gateway " << i-1 << "Pos X = " << pos.x << "Pos Y = " << pos.y << std::endl;
+		test = Platoon3.Get(i)->GetObject<MobilityModel>();
+		pos = test->GetPosition();
+		std::cout<< "MANET 3 Gateway " << i-1 << "Pos X = " << pos.x << "Pos Y = " << pos.y << std::endl;
+		test = Platoon4.Get(i)->GetObject<MobilityModel>();
+		pos = test->GetPosition();
+		std::cout<< "MANET 4 Gateway " << i-1 << "Pos X = " << pos.x << "Pos Y = " << pos.y << std::endl;
+		test = Platoon5.Get(i)->GetObject<MobilityModel>();
+		pos = test->GetPosition();
+		std::cout<< "MANET 5 Gateway " << i-1 << "Pos X = " << pos.x << "Pos Y = " << pos.y << std::endl;
+	}
 
   //OLSR routing protocal for Platoon
   OlsrHelper olsr;
@@ -263,6 +293,8 @@ int main(int argc, char* argv[])
   CMList.Add (olsr, 1);
   CMList.Add (dsdv, 0);//second parameter is priority
 
+  Ptr<OutputStreamWrapper> routingStream = Create<OutputStreamWrapper> ("testing-routing-table", std::ios::out);
+  olsr.PrintRoutingTableAllEvery (Seconds (2), routingStream);
   InternetStackHelper PStack;
   InternetStackHelper CMStack;
   PStack.SetRoutingHelper (PList);

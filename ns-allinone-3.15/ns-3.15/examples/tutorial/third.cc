@@ -21,7 +21,13 @@
 #include "ns3/wifi-module.h"
 #include "ns3/mobility-module.h"
 #include "ns3/csma-module.h"
+#include "ns3/aodv-module.h"
 #include "ns3/internet-module.h"
+
+#include "ns3/netanim-module.h"
+#include "ns3/olsr-module.h"
+#include "ns3/dsdv-module.h"
+#include "ns3/dsr-module.h"
 
 // Default Network Topology
 //
@@ -45,12 +51,12 @@ main (int argc, char *argv[])
   uint32_t nCsma = 3;
   uint32_t nWifi = 3;
 
-  CommandLine cmd;
-  cmd.AddValue ("nCsma", "Number of \"extra\" CSMA nodes/devices", nCsma);
-  cmd.AddValue ("nWifi", "Number of wifi STA devices", nWifi);
-  cmd.AddValue ("verbose", "Tell echo applications to log if true", verbose);
+  //CommandLine cmd;
+  //cmd.AddValue ("nCsma", "Number of \"extra\" CSMA nodes/devices", nCsma);
+  //cmd.AddValue ("nWifi", "Number of wifi STA devices", nWifi);
+  //cmd.AddValue ("verbose", "Tell echo applications to log if true", verbose);
 
-  cmd.Parse (argc,argv);
+  //cmd.Parse (argc,argv);
 
   if (nWifi > 18)
     {
@@ -130,8 +136,11 @@ main (int argc, char *argv[])
   mobility.SetMobilityModel ("ns3::ConstantPositionMobilityModel");
   mobility.Install (wifiApNode);
 
+  //AodvHelper aodv;
+
   InternetStackHelper stack;
   stack.Install (csmaNodes);
+  //stack.SetRoutingHelper(aodv);
   stack.Install (wifiApNode);
   stack.Install (wifiStaNodes);
 

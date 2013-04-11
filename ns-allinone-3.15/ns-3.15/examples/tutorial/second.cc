@@ -41,11 +41,11 @@ main (int argc, char *argv[])
   bool verbose = true;
   uint32_t nCsma = 3;
 
-  CommandLine cmd;
-  cmd.AddValue ("nCsma", "Number of \"extra\" CSMA nodes/devices", nCsma);
-  cmd.AddValue ("verbose", "Tell echo applications to log if true", verbose);
+//  CommandLine cmd;
+//  cmd.AddValue ("nCsma", "Number of \"extra\" CSMA nodes/devices", nCsma);
+//  cmd.AddValue ("verbose", "Tell echo applications to log if true", verbose);
 
-  cmd.Parse (argc,argv);
+//  cmd.Parse (argc,argv);
 
   if (verbose)
     {
@@ -53,7 +53,7 @@ main (int argc, char *argv[])
       LogComponentEnable ("UdpEchoServerApplication", LOG_LEVEL_INFO);
     }
 
-  nCsma = nCsma == 0 ? 1 : nCsma;
+  //nCsma = nCsma == 0 ? 1 : nCsma;
 
   NodeContainer p2pNodes;
   p2pNodes.Create (2);
@@ -77,8 +77,10 @@ main (int argc, char *argv[])
   csmaDevices = csma.Install (csmaNodes);
 
   InternetStackHelper stack;
-  stack.Install (p2pNodes.Get (0));
-  stack.Install (csmaNodes);
+  stack.Install (p2pNodes);
+  stack.Install (csmaNodes.Get (1));
+  stack.Install (csmaNodes.Get (2));
+  stack.Install (csmaNodes.Get (3));
 
   Ipv4AddressHelper address;
   address.SetBase ("10.1.1.0", "255.255.255.0");
@@ -106,8 +108,8 @@ main (int argc, char *argv[])
 
   Ipv4GlobalRoutingHelper::PopulateRoutingTables ();
 
-  pointToPoint.EnablePcapAll ("second");
-  csma.EnablePcap ("second", csmaDevices.Get (1), true);
+  //pointToPoint.EnablePcapAll ("second");
+  //csma.EnablePcap ("second", csmaDevices.Get (1), true);
 
   Simulator::Run ();
   Simulator::Destroy ();
